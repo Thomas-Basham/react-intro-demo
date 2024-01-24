@@ -1,47 +1,65 @@
 import React from "react";
 import "../styles/Main.css";
+import MessageDisplay from "./MessageDisplay";
 
-export default function Main() {
-  const [count, setCount] = React.useState(0);
-
-  const fruit = "blueberry";
-  const age = 26;
-  const someFruits = ["blackberry", "apple", "banana"]
-
-
-  function handleButtonClick(){
-    setCount(count + 1)
-  }
-
+export default function Main({ username }) {
   return (
     <main>
+      <h2> {username} </h2>
 
-      {fruit}
+      <div className="" id="main-copy">
+        <MessageDisplay />
+        <div className="exercise">
+          <h2>React Warm-Up Exercise: Custom Message Component</h2>
+          <p>
+            <strong>Objective:</strong> Build a simple React component that
+            displays a customizable message.
+          </p>
 
-      <br />
+          <p>
+            <strong>Requirements:</strong>
+          </p>
+          <ul>
+            <li>
+              Create a new component named <code>MessageDisplay</code>.
+            </li>
+            <li>
+              Use the <code>useState</code> hook to manage the message text,
+              initialized with "Hello, React!"
+            </li>
+            <li>Add a text input field to update the message.</li>
+            <li>
+              Display the message in a <code>&lt;div&gt;</code> or{" "}
+              <code>&lt;p&gt;</code> tag.
+            </li>
+            <li>
+              When the user types in the input, the displayed message should
+              update in real-time.
+            </li>
+          </ul>
 
-      {age >= 21 ? "Beer" : "Juice"}
+          <p>
+            <strong>Steps:</strong>
+          </p>
+          <ol>
+            <li>
+              Create a functional component <code>MessageDisplay</code>.
+            </li>
+            <li>
+              Implement a <code>useState</code> hook for the message text.
+            </li>
+            <li>Render the message and a text input in the component.</li>
+            <li>
+              Handle the input change to update the message as the user types.
+            </li>
+          </ol>
 
-      <br />
-
-      {fruit == 'blueberry' && "it's blue berry time!"}
-
-      {someFruits.map((fruit, index) => <li key={index}>{fruit}</li>)}
-
-      
-      <p>Count is: {count}</p>
-      <button onClick={handleButtonClick}>Click Me</button>
-
-      <p className='' id="main-copy">
-        This is an intro to react Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Perferendis, ducimus doloremque. Ratione sint, non
-        eaque consequatur maiores consectetur pariatur, voluptates in aliquid
-        repellat recusandae hic quo, adipisci sapiente totam rerum! Perferendis
-        expedita neque qui asperiores quisquam cum libero laborum
-        necessitatibus, harum recusandae facere ratione dolores possimus quod
-        quibusdam consequuntur vero dolor. Veniam dolores blanditiis ullam est
-        quo aliquid, fugiat delectus?
-      </p>
+          <p>
+            This exercise will help you get familiar with creating components,
+            managing state, and handling user input in React.
+          </p>
+        </div>
+      </div>
     </main>
   );
 }

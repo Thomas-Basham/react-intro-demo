@@ -1,65 +1,43 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import "../styles/Main.css";
-import MessageDisplay from "./MessageDisplay";
 
-export default function Main({ username }) {
+export default function Main() {
+  const [state, setState] = useState([]);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        setState(json);
+      });
+  }, []);
+
+  const posts = state.map((post, index) => {
+    return (
+      <div
+        key={index}
+        style={{
+          border: "solid 1px white",
+          backgroundColor: "tan",
+          width: "50%",
+          margin: "20px auto",
+          padding: "3em",
+          display: "flex",
+          flexDirection: "column",
+          gap: "5",
+        }}
+      >
+        <h3> {post.title} </h3>
+        <p> {post.body} </p>
+      </div>
+    );
+  });
+
   return (
     <main>
-      <h2> {username} </h2>
-
-      <div className="" id="main-copy">
-        <MessageDisplay />
-        <div className="exercise">
-          <h2>React Warm-Up Exercise: Custom Message Component</h2>
-          <p>
-            <strong>Objective:</strong> Build a simple React component that
-            displays a customizable message.
-          </p>
-
-          <p>
-            <strong>Requirements:</strong>
-          </p>
-          <ul>
-            <li>
-              Create a new component named <code>MessageDisplay</code>.
-            </li>
-            <li>
-              Use the <code>useState</code> hook to manage the message text,
-              initialized with "Hello, React!"
-            </li>
-            <li>Add a text input field to update the message.</li>
-            <li>
-              Display the message in a <code>&lt;div&gt;</code> or{" "}
-              <code>&lt;p&gt;</code> tag.
-            </li>
-            <li>
-              When the user types in the input, the displayed message should
-              update in real-time.
-            </li>
-          </ul>
-
-          <p>
-            <strong>Steps:</strong>
-          </p>
-          <ol>
-            <li>
-              Create a functional component <code>MessageDisplay</code>.
-            </li>
-            <li>
-              Implement a <code>useState</code> hook for the message text.
-            </li>
-            <li>Render the message and a text input in the component.</li>
-            <li>
-              Handle the input change to update the message as the user types.
-            </li>
-          </ol>
-
-          <p>
-            This exercise will help you get familiar with creating components,
-            managing state, and handling user input in React.
-          </p>
-        </div>
-      </div>
+      <h2>Posts: </h2>
+      {posts}
     </main>
   );
 }

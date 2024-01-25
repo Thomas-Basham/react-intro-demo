@@ -1,10 +1,8 @@
 import React from "react";
 
-export default function Footer({ username }) {
+export default function Footer() {
   return (
     <footer>
-      <h2> {username} </h2>
-
       <p>&copy; Codex Academy</p>
     </footer>
   );
